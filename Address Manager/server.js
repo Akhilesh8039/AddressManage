@@ -60,6 +60,35 @@ const server = http.createServer(async (request, response) => {
       return sendJson(response, 200, { ok: true });
     }
 
+    if (url.pathname.startsWith("/api/addresses/") && request.method === "PUT") {
+      const id = decodeURIComponent(url.pathname.replace("/api/addresses/", ""));
+      const payload = await readBody(request);
+      const addresses = await readAddresses();
+      const index = addresses.findIndex((address) => address.id === id);
+
+      if (index === -1) {
+        return sendJson(response, 404, { error: "Address not found." });
+      }
+
+      const updatedAddress = {
+        ...addresses[index],
+        street: clean(payload.street),
+        area: clean(payload.area),
+        city: clean(payload.city),
+        pin: clean(payload.pin),
+        updatedAt: new Date().toISOString(),
+      };
+
+      const validationError = validateAddress(updatedAddress);
+      if (validationError) {
+        return sendJson(response, 400, { error: validationError });
+      }
+
+      addresses[index] = updatedAddress;
+      await writeAddresses(addresses);
+      return sendJson(response, 200, updatedAddress);
+    }
+
     return serveStatic(url.pathname, response);
   } catch (error) {
     console.error(error);
