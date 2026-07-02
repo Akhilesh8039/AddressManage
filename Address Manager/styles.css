@@ -124,6 +124,10 @@ input:focus {
   font-weight: 700;
 }
 
+.search-field {
+  margin-bottom: 16px;
+}
+
 .address-list {
   display: grid;
   gap: 12px;
@@ -157,9 +161,60 @@ input:focus {
   border: 1px solid #f5b5af;
 }
 
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-button,
+.save-button,
+.cancel-button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.edit-button {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.save-button {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.cancel-button {
+  background: #f8fafc;
+  color: var(--text);
+}
+
 .delete-button:hover,
 .delete-button:focus-visible {
   background: #ffd9d6;
+}
+
+.edit-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.edit-form input {
+  min-height: 40px;
+}
+
+.edit-error {
+  grid-column: 1 / -1;
+  min-height: 20px;
+  margin: 0;
+  color: var(--danger);
+  font-weight: 700;
 }
 
 .empty-state {
@@ -206,11 +261,19 @@ input:focus {
   }
 
   .field-grid,
-  .address-card {
+  .address-card,
+  .edit-form {
     grid-template-columns: 1fr;
   }
 
-  .delete-button {
+  .card-actions {
+    justify-content: stretch;
+  }
+
+  .delete-button,
+  .edit-button,
+  .save-button,
+  .cancel-button {
     width: 100%;
   }
 }
