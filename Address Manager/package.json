@@ -1,0 +1,12 @@
+{
+  "name": "address-manager",
+  "version": "1.0.0",
+  "description": "Server-backed HTML, CSS, and JavaScript address manager.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

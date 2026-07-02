@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <h1>Address Manager</h1>
+
+    <section class="address-panel" aria-labelledby="form-heading">
+      <h2 id="form-heading">Add Address</h2>
+
+      <form id="address-form" novalidate>
+        <div class="field-grid">
+          <label>
+            <span>Street/Flat no.</span>
+            <input
+              id="street"
+              name="street"
+              type="text"
+              autocomplete="address-line1"
+              maxlength="60"
+              data-alpha-numeric
+            >
+          </label>
+
+          <label>
+            <span>Area</span>
+            <input
+              id="area"
+              name="area"
+              type="text"
+              autocomplete="address-line2"
+              maxlength="60"
+              data-alpha-numeric
+            >
+          </label>
+
+          <label>
+            <span>City</span>
+            <input
+              id="city"
+              name="city"
+              type="text"
+              autocomplete="address-level2"
+              maxlength="60"
+              data-alpha-numeric
+            >
+          </label>
+
+          <label>
+            <span>PIN code</span>
+            <input
+              id="pin"
+              name="pin"
+              type="text"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              maxlength="6"
+            >
+          </label>
+        </div>
+
+        <p id="form-error" class="error-message" role="alert"></p>
+        <button class="add-button" type="submit">ADD</button>
+      </form>
+    </section>
+
+    <section class="address-panel" aria-labelledby="addresses-heading">
+      <div class="section-header">
+        <h2 id="addresses-heading">Addresses</h2>
+        <p id="address-count" class="address-count">0 saved</p>
+      </div>
+
+      <div id="address-list" class="address-list"></div>
+      <p id="empty-state" class="empty-state">No addresses saved yet.</p>
+
+      <div class="pagination" aria-label="Address pagination">
+        <button id="prev-page" type="button">Previous</button>
+        <span id="page-status">Page 1 of 1</span>
+        <button id="next-page" type="button">Next</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
